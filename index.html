@@ -6,7 +6,8 @@
     <title>Paróquia Nossa Senhora do Livramento - Arcoverde/PE</title>
     <meta name="description" content="Paróquia Nossa Senhora do Livramento em Arcoverde - horários de missas, transmissões ao vivo, história e contato.">
     <meta name="keywords" content="igreja Arcoverde, missa Arcoverde, Nossa Senhora do Livramento, paróquia">
-    <link rel="canonical" href="https://paroquialivramento.com.br/">
+    <!-- Configure a URL canônica apenas após confirmar o endereço de publicação definitivo.
+         Ex.: <link rel="canonical" href="https://SEU-DOMINIO/"> -->
 
     <meta property="og:title" content="Paróquia Nossa Senhora do Livramento - Arcoverde/PE">
     <meta property="og:description" content="Horários de missas, transmissões ao vivo, história e contato.">
@@ -25,16 +26,17 @@
       "image":"LogoBrasaoDaParoquia.png",
       "address":{
         "@type":"PostalAddress",
-        "streetAddress":"Praça do Livramento, 17",
+        "streetAddress":"Praça do Livramento, s/n",
         "addressLocality":"Arcoverde",
         "addressRegion":"PE",
-        "postalCode":"56505-250",
         "addressCountry":"BR"
       },
       "telephone":"+5587991587001",
       "sameAs":[
         "https://www.instagram.com/paroquiadolivramento/",
-        "https://www.youtube.com/@PascomLivramento"
+        "https://www.facebook.com/pnslivramento",
+        "https://www.youtube.com/@PascomLivramento",
+        "https://www.whatsapp.com/channel/0029VaXvKtUDp2Q21fRl7R1A"
       ]
     }
     </script>
@@ -67,33 +69,52 @@
             color: var(--texto);
         }
         .topo {
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex; flex-wrap: wrap; gap: 8px 16px;
+            justify-content: space-between; align-items: center;
             background: linear-gradient(135deg, var(--azul), var(--azul-escuro), var(--dourado));
-            padding: 10px 5%; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 12px 4%; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             position: sticky; top: 0; z-index: 1000;
         }
-        .container-titulo { display: flex; flex-direction: column; align-items: flex-start; color: white; }
+        .container-titulo { display: flex; flex: 0 1 auto; min-width: 0; flex-direction: column; align-items: flex-start; color: white; }
         .nome-site { font-size: 1.2rem; margin: 0; font-weight: bold; }
         .localizacao-topo { font-size: 0.85rem; opacity: 0.9; margin: 0; }
         .logo {
             width: 50px; height: 50px; object-fit: contain; background: white;
             border-radius: 50%; padding: 5px; border: 2px solid var(--dourado-claro); flex-shrink: 0;
         }
+        /* Menu horizontal com rolagem: aproxime o mouse das bordas para revelar os links. */
         .menu {
-            display: flex; gap: 20px; overflow-x: auto; white-space: nowrap;
-            padding: 5px 0; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+            display: flex; flex: 1 1 630px; min-width: 0;
+            flex-wrap: nowrap; justify-content: flex-start; align-items: center;
+            gap: 4px 6px; padding: 6px 2px;
+            overflow-x: auto; overflow-y: hidden;
+            white-space: nowrap;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
+            scroll-padding-inline: 12px;
         }
         .menu::-webkit-scrollbar { display: none; }
         .menu a {
-            color: white; text-decoration: none; font-size: 14px; font-weight: 500;
-            position: relative; transition: 0.3s; flex-shrink: 0;
+            display: inline-flex; align-items: center; justify-content: center;
+            flex: 0 0 auto; white-space: nowrap;
+            color: white; text-decoration: none;
+            font-size: 14px; font-weight: 500;
+            line-height: 1.35; padding: 9px 11px;
+            border-radius: 10px; position: relative;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
         .menu a::after {
-            content: ""; position: absolute; width: 0%; height: 2px;
-            background: var(--dourado-claro); left: 0; bottom: -5px; transition: 0.3s;
+            content: ""; position: absolute; height: 2px;
+            background: var(--dourado-claro);
+            left: 11px; right: 11px; bottom: 4px;
+            transform: scaleX(0); transform-origin: center;
+            transition: transform 0.2s ease;
         }
-        .menu a:hover::after, .menu a:focus-visible::after { width: 100%; }
-        .menu a:focus-visible { outline: 2px solid var(--dourado-claro); outline-offset: 4px; border-radius: 2px; }
+        .menu a:hover, .menu a:focus-visible { background: rgba(255,255,255,0.15); }
+        .menu a:hover::after, .menu a:focus-visible::after { transform: scaleX(1); }
+        .menu a:focus-visible { outline: 2px solid var(--dourado-claro); outline-offset: -2px; }
 
         .parallax {
             width: 100%; height: 450px; background-image: url("Foto1EntradaIgreja.jpg");
@@ -534,69 +555,57 @@
         .grupo-item:hover .grupo-icone { border-color: var(--azul); color: var(--azul-escuro); transform: scale(1.05); }
         .grupo-item h4 { margin: 0; color: var(--azul-escuro); font-size: 0.98rem; line-height: 1.3; }
 
-        .galeria-container { max-width: 1100px; margin: 0 auto 80px; padding: 0 20px; }
-        .galeria-header {
-            display: flex; justify-content: space-between; align-items: center;
-            background: white; border-radius: 20px;
-            padding: 25px 30px; margin-bottom: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-            border: 1px solid #eee; flex-wrap: wrap; gap: 20px;
+        /* ============== CANAIS OFICIAIS (SEM GALERIA ARTIFICIAL DO INSTAGRAM) ============== */
+        .redes-container { max-width: 1100px; margin: 0 auto 80px; padding: 0 20px; }
+        .redes-intro { max-width: 740px; margin: -8px auto 28px; color: var(--texto-suave); line-height: 1.65; }
+        .redes-destaque {
+            display: grid; grid-template-columns: 1.35fr 1fr; gap: 26px;
+            border-radius: 22px; overflow: hidden;
+            background: linear-gradient(125deg, #41228c 0%, #873bb5 43%, #e93a81 78%, #f5a649 100%);
+            box-shadow: 0 16px 38px rgba(84, 40, 119, .15); color: #fff; text-align: left;
+            padding: 35px; align-items: center; margin-bottom: 24px;
         }
-        .galeria-header-info { flex: 1; min-width: 250px; text-align: left; }
-        .galeria-header-info p { margin: 8px 0 0; color: var(--texto-fraco); font-size: 0.95rem; }
-        .insta-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
-            color: white; padding: 6px 14px; border-radius: 20px;
-            font-weight: bold; font-size: 0.9rem;
+        .redes-destaque h3 { font-size: clamp(1.55rem, 3vw, 2.1rem); margin: 10px 0 12px; color: white; }
+        .redes-destaque p { font-size: 1rem; line-height: 1.6; margin: 0 0 22px; color: rgba(255,255,255,.93); }
+        .redes-perfil { font-size: .85rem; font-weight: 800; color: white; letter-spacing: .3px; }
+        .redes-perfil i { margin-right: 8px; }
+        .redes-destaque-icon { display: flex; align-items: center; justify-content: center; min-height: 155px; }
+        .redes-destaque-icon i { font-size: clamp(6rem, 14vw, 10rem); opacity: .85; filter: drop-shadow(0 15px 20px rgba(0,0,0,.15)); }
+        .redes-btn {
+            display: inline-flex; gap: 10px; align-items: center; justify-content: center;
+            color: #482467; background: #fff; border-radius: 28px; text-decoration: none;
+            padding: 12px 21px; font-weight: 800; transition: transform .2s, box-shadow .2s;
         }
-        .btn-instagram {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
-            color: white; padding: 12px 22px; border-radius: 30px;
-            text-decoration: none; font-weight: bold;
-            box-shadow: 0 6px 18px rgba(221, 42, 123, 0.3);
-            transition: 0.3s;
+        .redes-btn:hover, .redes-btn:focus-visible { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,.18); }
+        .redes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+        .rede-card {
+            display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+            background: white; border-radius: 18px; padding: 24px;
+            border: 1px solid #edf0f3; border-top: 4px solid var(--dourado);
+            box-shadow: 0 8px 25px rgba(0,0,0,.05); text-align: left;
         }
-        .btn-instagram:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(221, 42, 123, 0.4); }
-
-        .galeria-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
-        .foto-instagram {
-            position: relative; display: block; aspect-ratio: 1 / 1;
-            border-radius: 15px; overflow: hidden; cursor: pointer;
-            background: #f5f5f5; box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-            transition: 0.3s;
+        .rede-card > i { font-size: 2.1rem; color: var(--azul-escuro); }
+        .rede-card h3 { margin: 3px 0 0; color: var(--azul-escuro); font-size: 1.15rem; }
+        .rede-card p { margin: 0; color: var(--texto-suave); line-height: 1.5; font-size: .91rem; flex: 1; }
+        .rede-card a { display: inline-flex; align-items: center; gap: 8px; color: #086896; font-weight: 800; text-decoration: none; }
+        .rede-card a:hover { text-decoration: underline; }
+        .redes-nota { color: var(--texto-fraco); font-size: .86rem; margin: 20px auto 0; line-height: 1.5; }
+        .atendimento-secretaria {
+            max-width: 1060px; margin: -44px auto 75px; padding: 25px 20px;
+            border: 1px solid #f0e6c4; background: #fffdf7; border-radius: 18px;
+            text-align: center; box-sizing: border-box;
         }
-        .foto-instagram:hover { transform: scale(1.03); box-shadow: 0 12px 28px rgba(0,0,0,0.15); }
-        .foto-instagram img { width: 100%; height: 100%; object-fit: cover; display: block; transition: 0.4s; }
-        .foto-instagram:hover img { transform: scale(1.1); }
-        .foto-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(135deg, rgba(245,133,41,0.85), rgba(221,42,123,0.85), rgba(129,52,175,0.85));
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            color: white; opacity: 0; transition: 0.3s; gap: 10px;
+        .atendimento-secretaria h3 { margin: 0 0 9px; color: var(--azul-escuro); }
+        .atendimento-secretaria p { margin: 4px 0; line-height: 1.65; color: var(--texto-suave); }
+        .atendimento-secretaria a { color: #086896; font-weight: 700; }
+        @media (max-width: 768px) {
+            .redes-destaque { grid-template-columns: 1fr; padding: 29px 23px; }
+            .redes-destaque-icon { display: none; }
+            .redes-btn { width: 100%; box-sizing: border-box; }
         }
-        .foto-overlay i { font-size: 2.5rem; }
-        .foto-overlay span { font-weight: bold; font-size: 0.9rem; letter-spacing: 0.5px; }
-        .foto-instagram:hover .foto-overlay { opacity: 1; }
-        .foto-instagram img:not([src]), .foto-instagram img[src=""] { opacity: 0; }
-        .foto-instagram::before {
-            content: "\f16d"; font-family: "Font Awesome 6 Brands", "Font Awesome 5 Brands";
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3rem; color: #ddd; z-index: 0;
+        @media (max-width: 380px) {
+            .redes-grid { grid-template-columns: 1fr; }
         }
-        .foto-instagram img { position: relative; z-index: 1; }
-        .galeria-cta { text-align: center; margin-top: 30px; color: var(--texto-fraco); font-size: 1rem; }
-        .galeria-cta a { color: var(--azul-escuro); font-weight: bold; text-decoration: none; border-bottom: 2px solid var(--dourado-claro); }
-        .galeria-cta a:hover { color: var(--azul); }
-
-        @media (max-width: 600px) {
-            .galeria-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .galeria-header { padding: 20px; text-align: center; flex-direction: column; }
-            .galeria-header-info { text-align: center; }
-        }
-
         .doacao-container { max-width: 1100px; margin: 0 auto 80px; padding: 0 20px; }
         .versiculo-doacao {
             text-align: center; max-width: 700px; margin: -10px auto 35px;
@@ -995,13 +1004,15 @@
         }
 
         @media (max-width: 768px) {
-            .topo { flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 15px 5%; }
-            .container-titulo { width: 80%; align-items: center; margin-bottom: 10px; }
-            .menu { width: 100%; justify-content: flex-start; padding: 10px 0; }
+            .topo { position: relative; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 8px 12px; padding: 14px 4%; }
+            .container-titulo { width: auto; flex: 1 1 210px; align-items: flex-start; margin-bottom: 0; }
+            .nome-site { font-size: 1rem; }
+            .menu { flex: 0 0 100%; width: 100%; justify-content: flex-start; gap: 4px; padding: 8px 0 4px; }
+            .menu a { font-size: 13px; padding: 8px 9px; }
             .parallax { height: 300px; background-attachment: scroll; background-position: center 65%; }
             .agenda-grid { grid-template-columns: 1fr; }
             .youtube-info { text-align: center; align-items: center; padding: 30px 20px; }
-            .youtube-thumb { min-height: auto !important; overflow: visible !important; }
+            .youtube-thumb { overflow: hidden; }
             .live-placeholder { position: relative !important; inset: auto !important; padding: 40px 20px !important; border-radius: 20px 20px 0 0; }
             .historia-intro { grid-template-columns: 1fr; gap: 30px; padding: 30px 25px; }
             .historia-stats { flex-direction: row; flex-wrap: wrap; }
@@ -1173,9 +1184,21 @@
             color: var(--dourado-claro, #f2d27a);
             transition: color 0.3s;
         }
+        /* Navegação por teclado e respeito à preferência por menos animações */
+        .skip-link { position: absolute; left: 12px; top: -70px; z-index: 100001;
+                     background: #fff; color: #06496e; padding: 11px 18px; border-radius: 8px; font-weight: bold; }
+        .skip-link:focus { top: 12px; }
+        @media (max-width: 600px) {
+            .altares-grid { grid-template-columns: minmax(0, 1fr); }
+            .agenda-item.hoje { transform: none; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+        }
     </style>
 </head>
 <body id="topo">
+    <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
 
     <!-- Preloader / Splash Screen -->
     <div class="preloader" id="preloader">
@@ -1204,14 +1227,14 @@
             <a href="#padroeira">Padroeira</a>
             <a href="#paroco">Pároco</a>
             <a href="#grupos">Grupos</a>
-            <a href="#galeria">Galeria</a>
+            <a href="#redes">Redes Sociais</a>
             <a href="#avisos">Avisos</a>
             <a href="#doacao">Doação</a>
             <a href="#contato">Contato</a>
         </nav>
     </header>
 
-    <main>
+    <main id="conteudo">
         <section class="parallax" aria-label="Boas-vindas">
             <div class="overlay">
                 <h2>Paróquia Nossa Senhora do Livramento</h2>
@@ -1222,6 +1245,9 @@
         <section class="missa-container" aria-labelledby="missas">
             <h2 class="titulo" id="missas">Santa Missa</h2>
             <span class="linha-azul" aria-hidden="true"></span>
+            <p style="margin: -5px auto 30px; color: var(--texto-suave); max-width: 700px; line-height: 1.5;">
+                Horários habituais sujeitos a alterações em solenidades e eventos. Confirme com a secretaria paroquial.
+            </p>
             <div class="agenda">
                 <div class="agenda-grid">
                     <div class="agenda-item" data-dia="2">
@@ -1266,38 +1292,26 @@
         </section>
 
         <section aria-labelledby="ao-vivo">
-            <h2 class="titulo" id="ao-vivo">Transmissões ao Vivo</h2>
+            <h2 class="titulo" id="ao-vivo">Transmissões e Celebrações</h2>
             <span class="linha-azul" aria-hidden="true"></span>
             <div class="youtube-section">
-                <div class="youtube-thumb" id="live-container">
-                    <!-- Placeholder quando não há live -->
-                    <div class="live-placeholder" id="live-placeholder">
-                        <img src="LogoBrasaoDaParoquia.png" alt="Brasão da Paróquia" class="live-placeholder-logo">
-                        <div class="live-placeholder-texto">
-                            <strong>Nenhuma transmissão ao vivo</strong>
-                            Acompanhe as celebrações diárias às 19h
-                        </div>
-                        <span class="live-placeholder-sino">
-                            <i class="fas fa-bell" aria-hidden="true"></i> Ative o sino no YouTube
-                        </span>
-                    </div>
-                    <!-- Iframe da live (visível só quando ao vivo) -->
-                    <iframe id="live-iframe"
-                        src="https://www.youtube.com/@PascomLivramento/featured&autoplay=1&mute=1"
-                        title="Transmissão ao Vivo - Paróquia Livramento" loading="lazy"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                <div class="youtube-thumb" style="min-height: 290px; padding: 25px; box-sizing: border-box;">
+                    <a href="https://www.youtube.com/@PascomLivramento/streams"
+                       target="_blank" rel="noopener noreferrer" aria-label="Ver as transmissões no canal oficial da PASCOM"
+                       style="color: white; text-decoration: none; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 15px; text-align: center;">
+                        <i class="fab fa-youtube" style="font-size: 6rem; color: #ff3b3b;" aria-hidden="true"></i>
+                        <strong style="font-size: 1.15rem;">PASCOM Livramento</strong>
+                        <span style="font-size: .9rem; color: #e2e9f4;">Transmissões, missas e celebrações publicadas</span>
+                        <span style="font-weight: 700; font-size: .86rem; color: #f2d27a;">Acessar transmissões <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+                    </a>
                 </div>
                 <div class="youtube-info">
-                    <div class="live-badge" id="live-badge-status">
-                        <span class="dot" aria-hidden="true" id="live-dot"></span>
-                        <span id="live-badge-texto">Transmissão ao Vivo</span>
-                    </div>
-                    <h3 id="live-titulo">Acompanhe a Transmisão ao vivo</h3>
-                    <span class="live-horario">Todas as celebrações às 19h</span>
-                    <p id="live-descricao">Assista à última celebração diretamente aqui ou acompanhe em tempo real pelo canal oficial do YouTube.</p>
-                    <a href="https://www.youtube.com/@PascomLivramento" target="_blank" rel="noopener" class="btn-assista">
-                        <span>Acessar Canal YouTube</span>
+                    <span class="live-badge" style="background: #e7f5ff; color: #096b9b;">Canal oficial da PASCOM</span>
+                    <h3>Participe, mesmo à distância</h3>
+                    <span class="live-horario">Celebrações e momentos de fé</span>
+                    <p>Assista às transmissões e aos vídeos no YouTube da paróquia. Consulte a página de transmissões para saber se há uma celebração acontecendo neste momento.</p>
+                    <a href="https://www.youtube.com/@PascomLivramento/streams" target="_blank" rel="noopener noreferrer" class="btn-assista">
+                        <i class="fab fa-youtube" aria-hidden="true"></i> Ver transmissões
                     </a>
                 </div>
             </div>
@@ -1312,7 +1326,7 @@
                     <div class="historia-intro-texto">
                         <span class="intro-eyebrow">Mais de 100 anos de fé</span>
                         <h3>Uma história que se confunde com a de Arcoverde</h3>
-                        <p>A Paróquia de Nossa Senhora do Livramento foi criada em <strong>21 de agosto de 1919</strong> por Dom José Antônio de Oliveira Lopes, desmembrada da Diocese de Pesqueira. Suas raízes remontam a <strong>1865</strong>, quando uma imagem vinda de Portugal iniciou a devoção no sermão pernambucano.</p>
+                        <p>A Paróquia de Nossa Senhora do Livramento foi criada em <strong>21 de agosto de 1919</strong> por Dom José Antônio de Oliveira Lopes, no território da Diocese de Pesqueira. Suas raízes remontam a <strong>1865</strong>, quando uma imagem vinda de Portugal iniciou a devoção no sertão pernambucano.</p>
                         <p>Ao longo dos séculos, a paróquia cresceu junto com a cidade, tornando-se o coração espiritual de Arcoverde.</p>
                     </div>
                     <div class="historia-stats">
@@ -1546,30 +1560,50 @@
             </div>
         </section>
 
-        <section aria-labelledby="galeria">
-            <h2 class="titulo" id="galeria">Galeria de Fotos</h2>
+        <!-- O GitHub Pages é estático: não exibir fotos falsas ou prometer integração automática com Instagram.
+             Para um feed automático real, seria necessário backend autorizado e autenticação da Meta. -->
+        <section aria-labelledby="redes">
+            <h2 class="titulo" id="redes">Acompanhe a Paróquia</h2>
             <span class="linha-azul" aria-hidden="true"></span>
-            <div class="galeria-container">
-                <div class="galeria-header">
-                    <div class="galeria-header-info">
-                        <span class="insta-badge"><i class="fab fa-instagram" aria-hidden="true"></i> @paroquiadolivramento</span>
-                        <p>Acompanhe nossas últimas publicações e momentos especiais da paróquia.</p>
+            <div class="redes-container">
+                <p class="redes-intro">Veja fotografias das celebrações, comunicados, eventos e momentos da nossa comunidade pelos canais de comunicação da paróquia.</p>
+                <div class="redes-destaque">
+                    <div>
+                        <span class="redes-perfil"><i class="fab fa-instagram" aria-hidden="true"></i> @paroquiadolivramento</span>
+                        <h3>Nossas fotos e novidades estão no Instagram</h3>
+                        <p>Acompanhe as publicações diretamente no perfil da paróquia. Assim, você sempre vê as fotos realmente publicadas, sem uma galeria desatualizada no site.</p>
+                        <a class="redes-btn" href="https://www.instagram.com/paroquiadolivramento/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram" aria-hidden="true"></i> Ver fotos e publicações <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                        </a>
                     </div>
-                    <a href="https://www.instagram.com/paroquiadolivramento/" target="_blank" rel="noopener" class="btn-instagram">
-                        <i class="fab fa-instagram" aria-hidden="true"></i> Seguir no Instagram
-                    </a>
+                    <div class="redes-destaque-icon" aria-hidden="true"><i class="fab fa-instagram"></i></div>
                 </div>
-                <div class="galeria-grid">
-                    <a class="foto-instagram" href="https://www.instagram.com/paroquiadolivramento/" target="_blank" rel="noopener"><img src="Fotoinsta01.jpg" alt="Celebração na paróquia" loading="lazy"><div class="foto-overlay"><i class="fab fa-instagram" aria-hidden="true"></i><span>Ver no Instagram</span></div></a>
-                    <a class="foto-instagram" href="https://www.instagram.com/paroquiadolivramento/" target="_blank" rel="noopener"><img src="Fotoinsta02.jpg" alt="Festa da padroeira" loading="lazy"><div class="foto-overlay"><i class="fab fa-instagram" aria-hidden="true"></i><span>Ver no Instagram</span></div></a>
-                    <a class="foto-instagram" href="https://www.instagram.com/paroquiadolivramento/" target="_blank" rel="noopener"><img src="Fotoinsta03.jpg" alt="Procissão" loading="lazy"><div class="foto-overlay"><i class="fab fa-instagram" aria-hidden="true"></i><span>Ver no Instagram</span></div></a>
-                    <a class="foto-instagram" href="https://www.instagram.com/paroquiadolivramento/" target="_blank" rel="noopener"><img src="Fotoinsta04.jpg" alt="Comunidade reúnida" loading="lazy"><div class="foto-overlay"><i class="fab fa-instagram" aria-hidden="true"></i><span>Ver no Instagram</span></div></a>
-                    <a class="foto-instagram" href="https://www.instagram.com/paroquiadolivramento/" target="_blank" rel="noopener"><img src="Fotoinsta05.jpg" alt="Catequese" loading="lazy"><div class="foto-overlay"><i class="fab fa-instagram" aria-hidden="true"></i><span>Ver no Instagram</span></div></a>
-                    <a class="foto-instagram" href="https://www.instagram.com/paroquiadolivramento/" target="_blank" rel="noopener"><img src="Fotoinsta06.jpg" alt="Missa de domingo" loading="lazy"><div class="foto-overlay"><i class="fab fa-instagram" aria-hidden="true"></i><span>Ver no Instagram</span></div></a>
-                    <a class="foto-instagram" href="https://www.instagram.com/paroquiadolivramento/" target="_blank" rel="noopener"><img src="Fotoinsta07.jpg" alt="Evento paroquial" loading="lazy"><div class="foto-overlay"><i class="fab fa-instagram" aria-hidden="true"></i><span>Ver no Instagram</span></div></a>
-                    <a class="foto-instagram" href="https://www.instagram.com/paroquiadolivramento/" target="_blank" rel="noopener"><img src="Fotoinsta08.jpg" alt="Devoção mariana" loading="lazy"><div class="foto-overlay"><i class="fab fa-instagram" aria-hidden="true"></i><span>Ver no Instagram</span></div></a>
+                <div class="redes-grid">
+                    <article class="rede-card">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                        <h3>Facebook</h3>
+                        <p>Publicações e comunicados para nossa comunidade.</p>
+                        <a href="https://www.facebook.com/pnslivramento" target="_blank" rel="noopener noreferrer">Visitar a página <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                    </article>
+                    <article class="rede-card">
+                        <i class="fab fa-youtube" aria-hidden="true"></i>
+                        <h3>YouTube</h3>
+                        <p>Transmissões e vídeos da PASCOM Livramento.</p>
+                        <a href="https://www.youtube.com/@PascomLivramento" target="_blank" rel="noopener noreferrer">Acessar o canal <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                    </article>
+                    <article class="rede-card">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        <h3>Canal do WhatsApp</h3>
+                        <p>Receba os comunicados divulgados no canal da paróquia.</p>
+                        <a href="https://www.whatsapp.com/channel/0029VaXvKtUDp2Q21fRl7R1A" target="_blank" rel="noopener noreferrer">Acompanhar canal <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                    </article>
+                    <article class="rede-card">
+                        <i class="fas fa-church" aria-hidden="true"></i>
+                        <h3>Diocese de Pesqueira</h3>
+                        <p>Conheça as notícias, orientações e atividades diocesanas.</p>
+                        <a href="https://diocesedepesqueira.com.br/" target="_blank" rel="noopener noreferrer">Visitar o site <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                    </article>
                 </div>
-                <p class="galeria-cta">Quer ver mais? Visite nosso <a href="https://www.instagram.com/paroquiadolivramento/" target="_blank" rel="noopener">perfil completo no Instagram</a>.</p>
             </div>
         </section>
 
@@ -1578,7 +1612,7 @@
             <span class="linha-azul" aria-hidden="true"></span>
 
             <div class="avisos-container">
-                <p class="avisos-intro">Fique por dentro das próximas celebrações, festas e novidades da nossa paróquia.</p>
+                <p class="avisos-intro">Acompanhe a vida da paróquia e recorde momentos especiais. Para anúncios recentes, consulte os canais oficiais.</p>
 
                 <article class="aviso-destaque">
                     <div class="aviso-destaque-img" data-lightbox="FestaPadroeiraFoto01.jpg" data-alt="Festa de Nossa Senhora do Livramento">
@@ -1588,28 +1622,26 @@
                     </div>
                     <div class="aviso-destaque-corpo">
                         <span class="aviso-eyebrow">✦ Maior celebração do ano</span>
-                        <h3>Festa de Nossa Senhora do Livramento</h3>
+                        <h3>Festa de Nossa Senhora do Livramento — 2026</h3>
 
                         <div class="aviso-meta">
-                            <span><i class="far fa-calendar" aria-hidden="true"></i> 14 a 23 de Setembro</span>
+                            <span><i class="far fa-calendar" aria-hidden="true"></i> 14 a 23 de setembro de 2026</span>
                             <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Matriz do Livramento — Arcoverde/PE</span>
                         </div>
 
-                        <p>A Festa da Padroeira é a maior celebração religiosa de Arcoverde, reunindo milhares de fiéis em momentos de oração, novenas, missas solenes e a tradicional procissão pelas ruas da cidade, em devoção a Nossa Senhora do Livramento.</p>
+                        <p>Em 2026, a Festa da Padroeira reuniu a comunidade entre os dias 14 e 23 de setembro, com o tema “Com Maria, conhecer e praticar a Palavra”, incluindo celebrações, oração e a tradicional procissão.</p>
 
                         <div class="programacao-festa">
-                            <strong>Programação Geral</strong>
+                            <strong>Recordando a edição de 2026</strong>
                             <ul>
-                                <li><i class="fas fa-fire" aria-hidden="true"></i><span><b>13/09</b> — Alvorada Festiva e Hasteamento da Bandeira</span></li>
-                                <li><i class="fas fa-pray" aria-hidden="true"></i><span><b>14 a 22/09</b> — Novena da Padroeira (19h)</span></li>
-                                <li><i class="fas fa-church" aria-hidden="true"></i><span><b>23/09</b> — Dia da Padroeira: Missas durante o dia</span></li>
-                                <li><i class="fas fa-walking" aria-hidden="true"></i><span><b>23/09 (à noite)</b> — Procissão Solene e Missa de Encerramento</span></li>
+                                <li><i class="fas fa-church" aria-hidden="true"></i><span><b>14 de setembro</b> — Missa solene de abertura.</span></li>
+                                <li><i class="fas fa-pray" aria-hidden="true"></i><span><b>14 a 23 de setembro</b> — Celebrações, oração e quermesse.</span></li>
+                                <li><i class="fas fa-walking" aria-hidden="true"></i><span><b>23 de setembro, 16h30</b> — Procissão em honra à Padroeira.</span></li>
                             </ul>
                         </div>
-
-                        <span class="btn-aviso btn-em-breve" aria-disabled="true">
-                            Programação 2026 — Em breve <i class="fas fa-clock" aria-hidden="true"></i>
-                        </span>
+                        <a class="btn-aviso" href="https://www.instagram.com/paroquiadolivramento/" target="_blank" rel="noopener noreferrer">
+                            Acompanhar próximas programações <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </article>
 
@@ -1667,7 +1699,7 @@
                                 <li>Cópia do RG e CPF dos padrinhos;</li>
                                 <li>Endereço e telefone dos pais;</li>
                                 <li>Comprovante do curso, caso tenha sido realizado em outra paróquia;</li>
-                                <li>Pagamento da taxa de R$ 50,00.</li>
+                                <li>Consulte na secretaria a existência de taxas e os valores atualizados.</li>
                             </ul>
                             <h5>Atenção</h5>
                             <ul>
@@ -1751,6 +1783,9 @@
                         </div>
                     </div>
                 </div>
+                <p style="margin: 17px auto 0; color: var(--texto-fraco); font-size: .85rem; line-height: 1.5;">
+                    Antes de transferir, confira se a chave PIX, o QR Code e o favorecido correspondem aos dados oficiais da paróquia.
+                </p>
             </div>
         </section>
 
@@ -1779,8 +1814,15 @@
                 <div class="card-contato endereco">
                     <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                     <h3>Endereço</h3>
-                    <address>Praça do Livramento<br>N° 17 - Centro<br>CEP: 56505-250<br>Arcoverde - PE</address>
+                    <address>Praça do Livramento, s/n<br>Centro — Arcoverde/PE</address>
                 </div>
+            </div>
+            <div class="atendimento-secretaria">
+                <h3><i class="far fa-clock" aria-hidden="true"></i> Atendimento da Secretaria Paroquial</h3>
+                <p><strong>Segunda a sexta:</strong> 08h às 12h e 14h às 18h.</p>
+                <p><strong>Sábado:</strong> 08h às 12h.</p>
+                <p><strong>Telefone / WhatsApp:</strong> <a href="https://wa.me/5587991587001" target="_blank" rel="noopener noreferrer">(87) 9 9158-7001</a></p>
+                <p style="font-size: .82rem;">Informações conforme cadastro da Diocese de Pesqueira. Confirme alterações em feriados.</p>
             </div>
         </section>
 
@@ -1800,7 +1842,7 @@
     </main>
 
     <footer class="rodape">
-        <p>© 2026 Paróquia Nossa Senhora do Livramento</p>
+        <p>© <span id="ano-atual">2026</span> Paróquia Nossa Senhora do Livramento</p>
         <p class="dev">
             👨‍💻 Desenvolvido por:
             <a href="https://www.instagram.com/cauaznk7/?hl=pt-br"><strong>Cauã</strong></a>,
@@ -1817,6 +1859,9 @@
         if (new URLSearchParams(location.search).has('debug')) {
             document.body.classList.add('debug');
         }
+
+        const ano = document.getElementById('ano-atual');
+        if (ano) ano.textContent = new Date().getFullYear();
 
         const tabs = document.querySelectorAll('.doacao-tab');
         const paineis = document.querySelectorAll('.doacao-painel');
@@ -2096,82 +2141,79 @@
     })();
     </script>
 
+
     <script>
-    /* ============== DETECÇÃO DE LIVE NO YOUTUBE ============== */
-    (function() {
-        var container = document.getElementById('live-container');
-        var iframe = document.getElementById('live-iframe');
-        var placeholder = document.getElementById('live-placeholder');
-        var badge = document.getElementById('live-badge-status');
-        var badgeTexto = document.getElementById('live-badge-texto');
-        var dot = document.getElementById('live-dot');
-        var titulo = document.getElementById('live-titulo');
-        var descricao = document.getElementById('live-descricao');
-        if (!container || !iframe) return;
+    /* Menu: rolagem suave automática perto da borda esquerda/direita no desktop. */
+    (function () {
+        var menu = document.querySelector('.menu');
+        if (!menu) return;
 
-        var CHANNEL_ID = 'UCal8oRz466j8dcv26cWMmQw';
-        var liveUrl = 'https://www.youtube.com/embed/live_stream?channel=' + CHANNEL_ID;
-        var oEmbedUrl = 'https://www.youtube.com/oembed?url=https://www.youtube.com/live/' + CHANNEL_ID + '&format=json';
+        var animacao = 0;
+        var velocidade = 0;
+        var borda = 105; // Distância em pixels para começar a revelar os próximos itens.
+        var reduzirMovimento = window.matchMedia('(prefers-reduced-motion: reduce)');
+        var mouseFino = window.matchMedia('(hover: hover) and (pointer: fine)');
 
-        function setAoVivo(ativo) {
-            if (ativo) {
-                container.classList.add('ao-vivo');
-                badge.style.background = '#ffe6e6';
-                badge.style.color = '#ff0000';
-                dot.style.background = '#ff0000';
-                badgeTexto.textContent = 'AO VIVO AGORA';
-                titulo.textContent = '\uD83D\uDD34 Estamos ao vivo!';
-                descricao.textContent = 'A celebração está acontecendo agora! Acompanhe em tempo real.';
-            } else {
-                container.classList.remove('ao-vivo');
-                badge.style.background = 'rgba(14,175,234,0.1)';
-                badge.style.color = 'var(--azul-escuro)';
-                dot.style.background = 'var(--azul)';
-                dot.style.animation = 'none';
-                badgeTexto.textContent = 'Fora do ar';
-                titulo.textContent = 'Acompanhe de onde estiver';
-                descricao.textContent = 'Quando houver uma transmissão ao vivo, ela aparecerá automaticamente aqui. Ative o sininho no YouTube para ser notificado!';
+        function parar() {
+            velocidade = 0;
+            if (animacao) cancelAnimationFrame(animacao);
+            animacao = 0;
+        }
+
+        function mover() {
+            if (!velocidade || !mouseFino.matches) { parar(); return; }
+            var antes = menu.scrollLeft;
+            menu.scrollLeft += velocidade;
+            if (Math.abs(menu.scrollLeft - antes) < 0.01) { parar(); return; }
+            animacao = requestAnimationFrame(mover);
+        }
+
+        function aoMoverMouse(evento) {
+            if (!mouseFino.matches || menu.scrollWidth <= menu.clientWidth + 1) {
+                parar(); return;
             }
+            var area = menu.getBoundingClientRect();
+            var distanciaEsquerda = evento.clientX - area.left;
+            var distanciaDireita = area.right - evento.clientX;
+            var zona = Math.min(borda, area.width / 3);
+            var proporcao = 0;
+            var direcao = 0;
+
+            if (distanciaDireita < zona) {
+                direcao = 1;
+                proporcao = (zona - distanciaDireita) / zona;
+            } else if (distanciaEsquerda < zona) {
+                direcao = -1;
+                proporcao = (zona - distanciaEsquerda) / zona;
+            }
+
+            if (!direcao) { parar(); return; }
+            // Movimento progressivo, mais rápido ao se aproximar da borda.
+            velocidade = direcao * (1 + proporcao * (reduzirMovimento.matches ? 4 : 11));
+            if (!animacao) animacao = requestAnimationFrame(mover);
         }
 
-        function verificarLive() {
-            // Método 1: Tentar oEmbed
-            fetch(oEmbedUrl, { mode: 'cors' })
-                .then(function(r) {
-                    if (r.ok) {
-                        setAoVivo(true);
-                        iframe.src = liveUrl + '&autoplay=1&mute=0';
-                    } else {
-                        setAoVivo(false);
-                    }
-                })
-                .catch(function() {
-                    // Se o oEmbed falhar, tenta via thumbnail da live
-                    var img = new Image();
-                    img.onload = function() {
-                        // Se a imagem carregou e tem tamanho real, provavelmente há live
-                        if (img.naturalWidth > 120) {
-                            setAoVivo(true);
-                            iframe.src = liveUrl + '&autoplay=1&mute=0';
-                        } else {
-                            setAoVivo(false);
-                        }
-                    };
-                    img.onerror = function() { setAoVivo(false); };
-                    img.src = 'https://img.youtube.com/vi_webp/' + CHANNEL_ID + '/maxresdefault.webp';
-                });
-        }
+        menu.addEventListener('pointermove', function (evento) {
+            if (evento.pointerType === 'mouse') aoMoverMouse(evento);
+        });
+        menu.addEventListener('pointerleave', parar);
+        menu.addEventListener('pointerdown', parar);
+        window.addEventListener('blur', parar);
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) parar();
+        });
 
-        // Verificar imediatamente
-        setAoVivo(false); // Começa mostrando placeholder
-        verificarLive();
-
-        // Reverificar a cada 2 minutos
-        setInterval(verificarLive, 120000);
+        // Navegação por Tab: exibe o link focado mesmo que esteja fora da tela.
+        menu.addEventListener('focusin', function (evento) {
+            parar();
+            if (evento.target.matches('a')) {
+                evento.target.scrollIntoView({block: 'nearest', inline: 'nearest', behavior: 'auto'});
+            }
+        });
     })();
     </script>
 
-    <script>
+<script>
     /* ============== PRELOADER CONTROLLER ============== */
     (function() {
         var pre = document.getElementById('preloader');
